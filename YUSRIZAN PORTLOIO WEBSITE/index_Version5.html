@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portofolio — YUSRIZAN IRFAN (Hypercraft)</title>
+  <meta name="description" content="Portofolio YUSRIZAN IRFAN — Video Editor & Content Creator.">
+  <style>
+    :root{
+      --bg: #2b0505;
+      --card: #3a0a0a;
+      --muted: #d6a6a6;
+      --text: #fff7f7;
+      --accent: #ff3b3b; /* warna utama merah */
+      --accent-2: #ff8a8a;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 12px;
+      --gap: 1.25rem;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg) 0%, #1b0404 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding-bottom:4rem;
+    }
+
+    .container{max-width:1000px;margin:0 auto;padding:2rem}
+
+    .site-header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,rgba(0,0,0,0.25),transparent);backdrop-filter:blur(6px)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{font-weight:700;color:var(--text);text-decoration:none}
+    .nav{display:flex;gap:1rem}
+    .nav-link{color:var(--muted);text-decoration:none;padding:0.5rem;border-radius:8px}
+    .nav-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+
+    .header-actions{display:flex;gap:0.5rem;align-items:center}
+    .btn-icon{background:transparent;border:0;color:var(--text);cursor:pointer;font-size:1.1rem;padding:0.4rem}
+    .btn-menu{display:none;background:rgba(255,255,255,0.02);border:0;padding:0.5rem 0.65rem;border-radius:8px;color:var(--text)}
+    @media (max-width:780px){
+      .nav{display:none;position:absolute;right:1rem;top:68px;background:var(--card);padding:0.75rem;border-radius:10px;flex-direction:column}
+      .btn-menu{display:inline-block}
+      .nav.open{display:flex}
+    }
+
+    .hero{padding:4rem 0}
+    .hero-inner{display:grid;grid-template-columns:1fr 320px;gap:2rem;align-items:center}
+    .hero-text h1{font-size:2rem;margin:0}
+    .lead{color:var(--muted);margin-top:0.5rem}
+    .accent{color:var(--accent)}
+    .hero-cta{margin-top:1rem;display:flex;gap:0.75rem}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#2b0202;padding:0.6rem 1rem;border-radius:10px;text-decoration:none;font-weight:700;border:0;display:inline-block}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:0.55rem 1rem;border-radius:10px;text-decoration:none}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:1rem;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:1rem}
+
+    /* PROFILE PHOTO: bulat dan crop fokus ke wajah */
+    .profile-photo{
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--muted);
+      border:4px solid rgba(255,255,255,0.06);
+    }
+    .profile-photo .profile-img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      /* object-position mengatur focal point agar muka tidak terpotong.
+         Ubah nilai vertikal (mis. 30% atau 40%) kalau masih kurang pas. */
+      object-position: 50% 35%;
+      display:block;
+    }
+
+    .social-list{list-style:none;padding:0;margin:0;display:flex;gap:0.5rem}
+    .social-list a{display:inline-block;padding:0.4rem 0.7rem;border-radius:8px;background:rgba(0,0,0,0.12);text-decoration:none;color:var(--text);font-size:0.9rem}
+
+    .section{padding:3rem 0}
+    .section-title{margin:0 0 1rem 0;font-size:1.3rem}
+
+    .about-grid{display:grid;grid-template-columns:1fr 320px;gap:1.25rem}
+    .info-list{list-style:none;padding:0;margin:0;color:var(--muted)}
+    .skill-chips{display:flex;flex-wrap:wrap;gap:0.5rem}
+    .skill-chips span{background:rgba(255,255,255,0.03);padding:0.4rem 0.6rem;border-radius:999px;color:var(--text);font-size:0.9rem}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .project-card{background:var(--card);padding:0.75rem;border-radius:12px;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+    .project-preview{height:120px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#2b0202;font-size:32px}
+    .project-body{margin-top:0.6rem}
+    .muted{color:var(--muted)}
+
+    @media (max-width:980px){
+      .hero-inner,.about-grid{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:580px){
+      .projects-grid{grid-template-columns:1fr}
+    }
+
+    .contact-form{margin-top:1rem;display:flex;flex-direction:column;gap:0.75rem}
+    .form-row{display:flex;gap:0.75rem}
+    .form-row input{flex:1}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:0.6rem;border-radius:8px;color:var(--text);outline:none}
+    input:focus,textarea:focus{box-shadow:0 6px 20px rgba(255,59,59,0.12);border-color:var(--accent)}
+
+    .contact-meta{display:flex;flex-direction:column;gap:0.35rem;color:var(--muted);margin-top:0.5rem}
+    .contact-meta a{color:var(--text);text-decoration:none}
+
+    .site-footer{padding:1.25rem 0;color:var(--muted);text-align:center;position:relative;z-index:10}
+
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);opacity:0;pointer-events:none;transition:opacity .18s ease}
+    .modal[aria-hidden="false"]{opacity:1;pointer-events:auto}
+    .modal-content{background:var(--card);padding:1.25rem;border-radius:12px;max-width:520px;width:92%;position:relative}
+    .modal-close{position:absolute;right:10px;top:10px;border:0;background:transparent;color:var(--muted);font-size:1.1rem;cursor:pointer}
+
+    /* light theme override (opsional) */
+    :root[data-theme="light"]{
+      --bg: #fff6f6;
+      --card: #fff0f0;
+      --muted: #7a4e4e;
+      --text: #2b0202;
+      --glass: rgba(6,18,38,0.04);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#home">YUSRIZAN IRFAN — Hypercraft</a>
+      <nav class="nav" id="nav">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">🌙</button>
+        <button id="navToggle" class="btn-menu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Hai, saya <span class="accent">YUSRIZAN IRFAN</span></h1>
+          <p class="lead">Freelance: <strong>Hypercraft</strong> — 19 tahun — Video Editor & Content Creator</p>
+          <div class="hero-cta">
+            <a class="btn" href="#projects">Lihat Projek</a>
+            <a id="downloadCv" class="btn btn-outline" href="#" title="Download CV">Download CV</a>
+          </div>
+
+          <div class="contact-meta">
+            <div>Email: <a href="mailto:yuslanmahmud@gmail.com">yuslanmahmud@gmail.com</a></div>
+            <div>HP: <a href="tel:0192044749">0192044749</a></div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="profile-photo" aria-hidden="true">
+            <!-- GANTI: letakkan file foto Anda di folder yang sama dan beri nama 'yusrizan.jpg' -->
+            <img src="yusrizan.jpg" alt="YUSRIZAN IRFAN" class="profile-img">
+          </div>
+
+          <ul class="social-list">
+            <li><a href="#" aria-label="GitHub" title="GitHub">GitHub</a></li>
+            <li><a href="#" aria-label="LinkedIn" title="LinkedIn">LinkedIn</a></li>
+            <li><a href="mailto:yuslanmahmud@gmail.com" aria-label="Email" title="Email">Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <div class="about-grid">
+          <div>
+            <p>Saya adalah YUSRIZAN IRFAN (Freelance: Hypercraft), berumur 19 tahun. Saya bekerja sebagai Video Editor dan Content Creator sejak 2019. Fokus saya adalah storytelling visual, editing shortform & longform, color grading, dan motion graphics.</p>
+
+            <h3>Pengalaman & Kolaborasi</h3>
+            <ul class="info-list">
+              <li>Bekerja sama dengan: Luqman Yusni, VikarWorld, Hafidz Syed Jufri, Job Tepi, BlazingDude, Fluffie</li>
+              <li>Menjadi editor sejak: 2019</li>
+              <li>Software pertama: Kinemaster</li>
+              <li>Software terkini: Adobe Premiere Pro, CapCut Pro, After Effects, DaVinci Resolve</li>
+            </ul>
+          </div>
+          <div class="skills">
+            <h3>Skills</h3>
+            <div class="skill-chips">
+              <span>Shortform Editing</span>
+              <span>Longform Editing</span>
+              <span>Color Grading</span>
+              <span>Motion Graphics</span>
+              <span>Sound Editing</span>
+              <span>Workflow & Deliverables</span>
+            </div>
+
+            <h3 style="margin-top:1rem">Kontak</h3>
+            <div class="contact-meta">
+              <div>Email: <a href="mailto:yuslanmahmud@gmail.com">yuslanmahmud@gmail.com</a></div>
+              <div>HP: <a href="tel:0192044749">0192044749</a></div>
+              <div>Freelance: <strong>Hypercraft</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <article class="project-card" data-title="Promosi Produk — Luqman Yusni" data-desc="Video promosi: editing, color grading, sound mix." data-link="#">
+            <div class="project-preview">L</div>
+            <div class="project-body">
+              <h3>Promosi Produk — Luqman Yusni</h3>
+              <p class="muted">Video Promosi — Editing & Color</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-title="Series Short — VikarWorld" data-desc="Editing short-form untuk channel VikarWorld." data-link="#">
+            <div class="project-preview">V</div>
+            <div class="project-body">
+              <h3>Series Short — VikarWorld</h3>
+              <p class="muted">Shortform — Post-production</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-title="Motion Graphics — Hafidz Syed Jufri" data-desc="Motion graphics dan opening sequence." data-link="#">
+            <div class="project-preview">H</div>
+            <div class="project-body">
+              <h3>Motion Graphics — Hafidz Syed Jufri</h3>
+              <p class="muted">Motion Graphics — Branding</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-title="Kolaborasi — Job Tepi" data-desc="Editing kolaborasi untuk kampanye." data-link="#">
+            <div class="project-preview">J</div>
+            <div class="project-body">
+              <h3>Kolaborasi — Job Tepi</h3>
+              <p class="muted">Editing & Deliverables</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-title="Shorts — BlazingDude" data-desc="Short-form edits optimized for viewership." data-link="#">
+            <div class="project-preview">B</div>
+            <div class="project-body">
+              <h3>Shorts — BlazingDude</h3>
+              <p class="muted">Shortform — Growth</p>
+            </div>
+          </article>
+
+          <article class="project-card" data-title="Content Series — Fluffie" data-desc="Series editing & color grading." data-link="#">
+            <div class="project-preview">F</div>
+            <div class="project-body">
+              <h3>Content Series — Fluffie</h3>
+              <p class="muted">Longform — Post-production</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="muted">Punya project atau ingin ngobrol? Isi form atau kirim email langsung.</p>
+        <form class="contact-form" action="mailto:yuslanmahmud@gmail.com" method="post" enctype="text/plain">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Nama" required>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <textarea name="message" placeholder="Pesan" rows="6" required></textarea>
+          <div class="form-actions">
+            <button class="btn" type="submit">Kirim</button>
+            <a class="btn btn-outline" href="mailto:yuslanmahmud@gmail.com">Email Langsung</a>
+          </div>
+        </form>
+
+        <div style="margin-top:1rem;color:var(--muted)">
+          <div><strong>Email:</strong> <a href="mailto:yuslanmahmud@gmail.com">yuslanmahmud@gmail.com</a></div>
+          <div><strong>HP:</strong> <a href="tel:0192044749">0192044749</a></div>
+          <div style="margin-top:0.5rem"><strong>Freelance:</strong> Hypercraft</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> YUSRIZAN IRFAN (Hypercraft) — Dibuat dengan ❤</p>
+    </div>
+  </footer>
+
+  <!-- Project modal -->
+  <div id="projectModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+      <h3 id="modalTitle">Judul Project</h3>
+      <p id="modalDesc">Deskripsi</p>
+      <a id="modalLink" class="btn" href="#" target="_blank" rel="noopener">Lihat Project</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      // year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // nav toggle mobile
+      const nav = document.getElementById('nav');
+      const navToggle = document.getElementById('navToggle');
+      navToggle && navToggle.addEventListener('click', () => nav.classList.toggle('open'));
+
+      // theme toggle (light/dark)
+      const themeToggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('site-theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+      }
+      themeToggle && themeToggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        if (isLight) {
+          document.documentElement.removeAttribute('data-theme');
+          themeToggle.textContent = '🌙';
+          localStorage.removeItem('site-theme');
+        } else {
+          document.documentElement.setAttribute('data-theme','light');
+          themeToggle.textContent = '☀️';
+          localStorage.setItem('site-theme','light');
+        }
+      });
+
+      // projects -> modal
+      const modal = document.getElementById('projectModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDesc = document.getElementById('modalDesc');
+      const modalLink = document.getElementById('modalLink');
+      const modalClose = document.getElementById('modalClose');
+
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+          modalTitle.textContent = card.dataset.title || 'Project';
+          modalDesc.textContent = card.dataset.desc || '';
+          modalLink.href = card.dataset.link || '#';
+          modal.setAttribute('aria-hidden','false');
+        });
+      });
+      modalClose && modalClose.addEventListener('click', () => modal.setAttribute('aria-hidden','true'));
+      modal && modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.setAttribute('aria-hidden','true');
+      });
+
+      // smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const href = a.getAttribute('href');
+          if (href.length > 1) {
+            const el = document.querySelector(href);
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({behavior:'smooth',block:'start'});
+              nav.classList.remove('open');
+            }
+          }
+        });
+      });
+
+      // Download CV (text)
+      const downloadCv = document.getElementById('downloadCv');
+      downloadCv && downloadCv.addEventListener('click', (e) => {
+        e.preventDefault();
+        const name = "YUSRIZAN IRFAN";
+        const content = [
+          name,
+          "Freelance: Hypercraft",
+          "Umur: 19 tahun",
+          "Pekerjaan: Video Editor & Content Creator",
+          "",
+          "Tentang saya:",
+          " - Editor sejak 2019.",
+          " - Fokus pada storytelling, shortform & longform editing, color grading, motion graphics.",
+          "",
+          "Kolaborasi & Klien:",
+          " - Luqman Yusni",
+          " - VikarWorld",
+          " - Hafidz Syed Jufri",
+          " - Job Tepi",
+          " - BlazingDude",
+          " - Fluffie",
+          "",
+          "Software:",
+          " - Pertama: Kinemaster",
+          " - Terkini: Adobe Premiere Pro, CapCut Pro, After Effects, DaVinci Resolve",
+          "",
+          "Skills: Shortform Editing, Longform Editing, Color Grading, Motion Graphics, Sound Editing",
+          "",
+          "Kontak:",
+          " Email: yuslanmahmud@gmail.com",
+          " HP: 0192044749"
+        ].join('\n');
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = (name + " - CV.txt");
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+    })();
+  </script>
+</body>
+</html>
